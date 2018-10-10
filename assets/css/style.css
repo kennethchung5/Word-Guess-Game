@@ -1,0 +1,14 @@
+.letterDiv {
+    height: 30px;
+    width: 30px;
+    border-bottom: black solid thick; 
+    float: left;
+    margin: 0 5px;
+}
+
+#wordDisplay {
+    height: 200px; 
+    width: 400px; 
+    background-color: yellow;
+}
+
