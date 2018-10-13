@@ -113,6 +113,8 @@ function setWord() {
         // set Guess# to 7
         document.getElementById("GuessNumberImg").setAttribute("src", "assets/images/Guess7.PNG");
         document.getElementById("GuessNumberImg").setAttribute("alt", "7");
+        document.getElementById("resultImg").setAttribute("src", "");
+        document.getElementById("resultImg").setAttribute("alt", "");
         
         // initiate per-word variables
         guessedLetters = [];
@@ -139,7 +141,7 @@ document.onkeyup = function checkLetter(event) {
             var correctLetter = false;
 
             // loop through currentWord, check match against currentLetter
-            for (i = 0; i < currentWord.length; i++) {
+            for (var i = 0; i < currentWord.length; i++) {
                 if (currentWord[i] === currentLetter) {
                     // reveal letter in the corresponding letterDiv
                     document.getElementById("letterDiv" + i).textContent = currentLetter;                
@@ -166,6 +168,11 @@ document.onkeyup = function checkLetter(event) {
                     
                     // display win scenario
                     document.getElementById("resultText").textContent = "You guessed the word!";
+
+                    //randomly choose Win# image; hardCode # of images
+                    var n = Math.floor(Math.random() * 10)
+                    document.getElementById("resultImg").setAttribute("src", "assets/images/Win" + n + ".PNG");
+                    document.getElementById("resultImg").setAttribute("alt", "Nice!");
                 };
             }
             else {
@@ -184,6 +191,10 @@ document.onkeyup = function checkLetter(event) {
 
                     // display loss scenario
                     document.getElementById("resultText").textContent = "You ran out of guesses!";
+
+                    var n = Math.floor(Math.random() * 10);
+                    document.getElementById("resultImg").setAttribute("src", "assets/images/Loss" + n + ".PNG");
+                    document.getElementById("resultImg").setAttribute("alt", "You'll get the next one!");
                 };
             };        
         };

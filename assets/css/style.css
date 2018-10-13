@@ -1,3 +1,7 @@
+.container {
+    border: black solid;
+}
+
 .letterDiv {
     height: 50px;
     width: 40px;
@@ -24,9 +28,12 @@
 }
 
 #resultText {
-    /* border: purple dashed; */
     margin: auto;
     height: 40px;
     
 };
 
+#resultImg {
+    height: 150px;
+    width: 150px;
+}
