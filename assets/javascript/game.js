@@ -57,6 +57,7 @@ var wordSet = [
     ["P","L","A","T","F","O","R","M"],
     ["R","A","I","L"],
     ["S","E","R","V","I","C","E"],
+    ["S","I","G","N","A","L"],
     ["S","T","A","T","I","O","N"],
     ["S","T","O","P"],
     ["S","T","R","A","P","H","A","N","G","E","R"],
@@ -81,43 +82,52 @@ var remainingGuesses;
 var hitCount;
 var livePlay = 0;
 
+
+
 function setWord() {
-    // check to see if words remain (i.e. wordSet not empty)
-
-    // clear page (wordDisplay and guessedList)
-    document.getElementById("wordDisplay").innerHTML = "";
-    document.getElementById("guessedList").innerHTML = "";
-
-    // pick word from wordSet
-    var randomIndex = Math.floor(Math.random() * wordSet.length);
-    currentWord = wordSet[randomIndex];
-
-
-    // remove from array
-    wordSet.splice(randomIndex, 1);
-
-    // set word in display
-    for (var i = 0; i < currentWord.length; i++) {
-        var letterBox = document.createElement("div");
-        letterBox.setAttribute("class", "letterDiv");
-        letterBox.id = "letterDiv" + i;
-        document.getElementById("wordDisplay").appendChild(letterBox);
-    };
-
-    // set Guess# to 7
-    document.getElementById("GuessNumberImg").setAttribute("src", "assets/images/Guess7.PNG");
-    document.getElementById("GuessNumberImg").setAttribute("alt", "7");
     
-    // initiate per-word variables
-    guessedLetters = [];
-    remainingGuesses = 7; 
-    hitCount = 0;
-    livePlay = 1;
+        // check to see if words remain (i.e. wordSet not empty)
+
+        // clear page (wordDisplay and guessedList)
+        document.getElementById("wordDisplay").innerHTML = "";
+        document.getElementById("guessedList").innerHTML = "";
+
+        // pick word from wordSet
+        var randomIndex = Math.floor(Math.random() * wordSet.length);
+        currentWord = wordSet[randomIndex];
+
+
+        // remove from array
+        wordSet.splice(randomIndex, 1);
+
+        // set word in display
+        for (var i = 0; i < currentWord.length; i++) {
+            var letterBox = document.createElement("div");
+            letterBox.setAttribute("class", "letterDiv");
+            letterBox.id = "letterDiv" + i;
+            document.getElementById("wordDisplay").appendChild(letterBox);
+        };
+
+        // set Guess# to 7
+        document.getElementById("GuessNumberImg").setAttribute("src", "assets/images/Guess7.PNG");
+        document.getElementById("GuessNumberImg").setAttribute("alt", "7");
+        
+        // initiate per-word variables
+        guessedLetters = [];
+        remainingGuesses = 7; 
+        hitCount = 0;
+        livePlay = 1;
+    
 };
 
 
 //respond to keyup
 document.onkeyup = function checkLetter(event) {
+
+    if (event.keyCode === 13) {
+        setWord();
+    };
+
     // execute only if game is ready (livePlay === 1). this prevents responding to keyups when game is in a certain state.
     if (livePlay === 1) {
         var currentLetter = event.key.toUpperCase();        
