@@ -41,8 +41,37 @@ var allLetters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P
 //global
 var score = 0;
 var wordSet = [
+
+    ["B","U","S"],
+    ["C","O","M","M","U","T","E"],
+    ["C","O","N","D","U","C","T","O","R"],
+    ["D","E","L","A","Y","E","D"],
+    ["D","R","I","V","E","R"],
+    ["E","X","P","R","E","S","S"],
+    ["F","A","R","E"],
+    ["L","I","M","I","T","E","D"],
+    ["L","I","N","E"],
+    ["L","O","C","A","L"],
+    ["M","E","T","R","O","C","A","R","D"],
+    ["P","A","S","S","E","N","G","E","R"],
+    ["P","L","A","T","F","O","R","M"],
+    ["R","A","I","L"],
+    ["S","E","R","V","I","C","E"],
+    ["S","T","A","T","I","O","N"],
+    ["S","T","O","P"],
+    ["S","T","R","A","P","H","A","N","G","E","R"],
     ["S","U","B","W","A","Y"],
-    ["C","O","M","M","U","T","E"]
+    ["S","W","I","P","E"],
+    ["T","E","R","M","I","N","A","L"],
+    ["T","R","A","C","K"],
+    ["T","R","A","I","N"],
+    ["T","R","A","N","S","F","E","R"],
+    ["T","R","A","N","S","I","T"],
+    ["T","U","N","N","E","L"],
+    ["T","U","R","N","S","T","I","L","E"],
+    ["U","N","D","E","R","G","R","O","U","N","D"],
+    ["U","N","L","I","M","I","T","E","D"]
+
 
 ];
 
@@ -75,9 +104,13 @@ function setWord() {
         document.getElementById("wordDisplay").appendChild(letterBox);
     };
 
-    // initiate per-word variables?
+    // set Guess# to 7
+    document.getElementById("GuessNumberImg").setAttribute("src", "assets/images/Guess7.PNG");
+    document.getElementById("GuessNumberImg").setAttribute("alt", "7");
+    
+    // initiate per-word variables
     guessedLetters = [];
-    remainingGuesses = 10; 
+    remainingGuesses = 7; 
     hitCount = 0;
     livePlay = 1;
 };
@@ -115,20 +148,30 @@ document.onkeyup = function checkLetter(event) {
 
                 //check whether more letters remain; if not, increase the score
                 if (hitCount === currentWord.length) {
-                    score += 1;
-
                     livePlay = 0;
-                    // add event for setword? maybe: call a function into solved state
-                    // setWord();
+
+                    score += 1;
+                    
+                    // display win scenario
+                    
                 };
             }
             else {
                 remainingGuesses -= 1;
 
+                document.getElementById("GuessNumberImg").setAttribute("src", "assets/images/Guess" + remainingGuesses + ".PNG");
+                document.getElementById("GuessNumberImg").setAttribute("alt", remainingGuesses);
+
                 if(remainingGuesses === 0) {
                     livePlay = 0;
-                    // add event for setword? maybe: call a function into solved state
-                    // setWord();
+
+                    // display solution
+                    for (var i = 0; i < currentWord.length; i++) {
+                        document.getElementById("letterDiv" + i).textContent = currentWord[i];
+                    };
+
+                    // display loss scenario
+                    
                 };
             };        
         };
