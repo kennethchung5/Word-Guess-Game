@@ -2,31 +2,64 @@
 <html>
 <head>
     <script src="assets\javascript\game.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
     <link rel="stylesheet" href="assets/css/style.css">
 </head>
 
+<!--style="height: 500px; width: 500px; background-color: white; border: black dashed;"-->
+
 <body>
-    <div class="container" style="height: 500px; width: 500px; background-color: white; border: black dashed;">
+    <div class="container col-md-6" style="border: black dashed;">
 
-        <button style="height: 50px; width: 100px;" onclick="setWord()"></button>
+        <!-- <button style="height: 50px; width: 100px;" onclick="setWord()"></button> -->
         <br><br>
-        <div id="wordDisplay" >
-            
+        <div class="row">
+            <p style="margin: auto">Press ENTER for a new word.</p>
         </div>
 
+        <div class="row">
+            <div id="wordDisplay" class="col-md-12">
+                
+            </div>
+        </div>
         <hr>
-        <div id="GuessNumberDisplay">
-            <h2>Guesses Remaining: </h2>
-            <img id="GuessNumberImg" style="height: 50px; width: 50px" src="" alt="">
-        </div>
-        
 
-        <h2>Letters Guessed: </h2>
-        <div id="guessedList">
+
+        <div class="row">
+
+            <div id="GuessNumberDisplay" class="col-md-6">
+                <div class="row">
+                    <div class="col-md-8">
+                        <h2>Guesses Remaining: </h2>
+                    </div>
+                    <div class="col-md-4">
+                        <img id="GuessNumberImg" style="height: 80px; width: 80px" src="" alt="">
+                    </div>
+                </div>
+            </div>
             
-            
+            <div id="GuessedLettersDisplay" class="col-md-6">
+                <div class="row">
+                    <div class="col-md-6">
+                        <h2>Letters Guessed: </h2>
+                    </div>
+                    <div class="col-md-6">
+                        <div id="guessedList"></div>
+                    </div>
+                </div>
+            </div>
+
         </div>
 
+        <div class="row">
+            <h2 id="resultText"></h2>
+        </div>
+        <div class="row">
+            <img style="margin: auto" id="resultImg" src="" alt="">
+        </div>
+        <div class="row">
+            <p style="margin: auto;">Press ENTER for a new word.<p>
+        </div>
     </div>
 </body>
 </html>

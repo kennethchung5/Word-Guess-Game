@@ -1,18 +1,32 @@
 .letterDiv {
-    height: 30px;
-    width: 30px;
-    border-bottom: black solid thick; 
+    height: 50px;
+    width: 40px;
     float: left;
     margin: 0 5px;
+    text-align: center;
+    font-size: 40px;
+    line-height: 100%;
+    padding-top: 5px;
 }
 
 #wordDisplay {
-    height: 200px; 
-    width: 400px; 
+    height: 50px;
+    /*width: 100%; */
+    width: auto;
+    margin: auto;
     background-color: yellow;
 }
 
+#resultDisplay {
+    
+    border: green dashed;
+    height: 80px;
+}
 
-
-
+#resultText {
+    /* border: purple dashed; */
+    margin: auto;
+    height: 40px;
+    
+};
 

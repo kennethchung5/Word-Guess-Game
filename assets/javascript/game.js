@@ -80,7 +80,7 @@ var currentWord = [];
 var guessedLetters = [];
 var remainingGuesses;
 var hitCount;
-var livePlay = 0;
+var livePlay = false;
 
 
 
@@ -91,6 +91,7 @@ function setWord() {
         // clear page (wordDisplay and guessedList)
         document.getElementById("wordDisplay").innerHTML = "";
         document.getElementById("guessedList").innerHTML = "";
+        document.getElementById("resultText").innerHTML = "";
 
         // pick word from wordSet
         var randomIndex = Math.floor(Math.random() * wordSet.length);
@@ -105,6 +106,7 @@ function setWord() {
             var letterBox = document.createElement("div");
             letterBox.setAttribute("class", "letterDiv");
             letterBox.id = "letterDiv" + i;
+            letterBox.textContent = "__";
             document.getElementById("wordDisplay").appendChild(letterBox);
         };
 
@@ -116,7 +118,7 @@ function setWord() {
         guessedLetters = [];
         remainingGuesses = 7; 
         hitCount = 0;
-        livePlay = 1;
+        livePlay = true;
     
 };
 
@@ -128,13 +130,13 @@ document.onkeyup = function checkLetter(event) {
         setWord();
     };
 
-    // execute only if game is ready (livePlay === 1). this prevents responding to keyups when game is in a certain state.
-    if (livePlay === 1) {
+    // execute only if game is ready (livePlay is true). this prevents responding to keyups when game is in a certain state.
+    if (livePlay) {
         var currentLetter = event.key.toUpperCase();        
 
         // check that: 1.key is a letter and 2.key is not already guessed
         if (allLetters.indexOf(currentLetter) > -1 && guessedLetters.indexOf(currentLetter) === -1) {
-            var correctLetter = 0;
+            var correctLetter = false;
 
             // loop through currentWord, check match against currentLetter
             for (i = 0; i < currentWord.length; i++) {
@@ -143,7 +145,7 @@ document.onkeyup = function checkLetter(event) {
                     document.getElementById("letterDiv" + i).textContent = currentLetter;                
                     
                     hitCount += 1;
-                    correctLetter = 1;
+                    correctLetter = true;
                 };
             }
                 
@@ -153,17 +155,17 @@ document.onkeyup = function checkLetter(event) {
             document.getElementById("guessedList").textContent = guessedLetters;
             
             //based on whether a correct guess was made, different functions/methods to execute. 
-            if (correctLetter === 1) {
+            if (correctLetter) {
                 //style this element in guessedLetters
 
                 //check whether more letters remain; if not, increase the score
                 if (hitCount === currentWord.length) {
-                    livePlay = 0;
+                    livePlay = false;
 
                     score += 1;
                     
                     // display win scenario
-                    
+                    document.getElementById("resultText").textContent = "You guessed the word!";
                 };
             }
             else {
@@ -173,7 +175,7 @@ document.onkeyup = function checkLetter(event) {
                 document.getElementById("GuessNumberImg").setAttribute("alt", remainingGuesses);
 
                 if(remainingGuesses === 0) {
-                    livePlay = 0;
+                    livePlay = false;
 
                     // display solution
                     for (var i = 0; i < currentWord.length; i++) {
@@ -181,7 +183,7 @@ document.onkeyup = function checkLetter(event) {
                     };
 
                     // display loss scenario
-                    
+                    document.getElementById("resultText").textContent = "You ran out of guesses!";
                 };
             };        
         };
