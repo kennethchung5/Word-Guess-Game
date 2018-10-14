@@ -163,9 +163,7 @@ document.onkeyup = function checkLetter(event) {
                 //check whether more letters remain; if not, increase the score
                 if (hitCount === currentWord.length) {
                     livePlay = false;
-
-                    score += 1;
-                    
+                                        
                     // display win scenario
                     document.getElementById("resultText").textContent = "You guessed the word!";
 
@@ -173,6 +171,9 @@ document.onkeyup = function checkLetter(event) {
                     var n = Math.floor(Math.random() * 10)
                     document.getElementById("resultImg").setAttribute("src", "assets/images/Win" + n + ".PNG");
                     document.getElementById("resultImg").setAttribute("alt", "Nice!");
+
+                    score += 1;
+                    document.getElementById("scoreDisplay").textContent = "Score: " + score;
                 };
             }
             else {
