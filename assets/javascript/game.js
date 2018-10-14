@@ -8,37 +8,11 @@
     // loop through word (array) to match letter
         // on a hit, display letter and turn on switch var
 
-        
+                
 
-// function test1() {
-//     var newDiv = document.createElement("div");
-//     newDiv.setAttribute("class", "letterDiv");
-//     document.getElementById("wordDisplay").appendChild(newDiv);
-
-// }
-
-// function test2(currentWord) {
-//     for (var i = 0; i < currentWord.length; i++) {
-//         var newDiv = document.createElement("div");
-//         newDiv.setAttribute("class", "letterDiv");
-//         newDiv.setAttribute("id", "div" + i);
-//         document.getElementById("wordDisplay").appendChild(newDiv);
-
-//         // testing: can we dynamically refer to elements by id? 
-//         if (currentWord[i] == "A") {
-//             document.getElementById("div" + i).textContent = "A";
-//         }
-//     }
-
-// }
-
-        
-
-//global, referenced in keyup event
+//global variables
 var allLetters = ["A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"];
 
-
-//global
 var score = 0;
 var wordSet = [
 
@@ -83,6 +57,7 @@ var remainingGuesses;
 var hitCount;
 var livePlay = false;
 
+var doorChime = new Audio("assets/sounds/Recording.m4a");
 
 
 function setWord() {    
@@ -122,6 +97,8 @@ function setWord() {
                 letterBox.textContent = "__";
                 document.getElementById("wordDisplay").appendChild(letterBox);
             };
+
+            doorChime.play();
 
             // set Guess# to 7
             document.getElementById("GuessNumberImg").setAttribute("src", "assets/images/Guess7.PNG");
