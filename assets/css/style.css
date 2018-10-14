@@ -27,6 +27,10 @@
     color: red;
 }
 
+#pTop, #pBottom {
+    margin: auto;
+}
+
 #wordDisplay {
     height: 50px;
     /*width: 100%; */
