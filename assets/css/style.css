@@ -13,6 +13,20 @@
     padding-top: 5px;
 }
 
+.greenLetter, .redLetter {
+    height: 25px;
+    width: 20px;
+    float: left;
+    text-align: center;
+}
+
+.greenLetter {
+    color: green;
+}
+.redLetter {
+    color: red;
+}
+
 #wordDisplay {
     height: 50px;
     /*width: 100%; */

@@ -152,9 +152,21 @@ document.onkeyup = function checkLetter(event) {
             }
                 
             // add currentLetter to guessedLetters array
-            guessedLetters.push(currentLetter);
-            // additionally: display in guessedList
-            document.getElementById("guessedList").textContent = guessedLetters;
+            guessedLetters.push(currentLetter);                        
+
+            // add div for current letter to guessedList; style according to correctLetter
+            var guessedLetterBox = document.createElement("div");
+
+            guessedLetterBox.textContent = currentLetter;
+
+            if (correctLetter) {
+                guessedLetterBox.setAttribute("class", "greenLetter");
+            }
+            else {
+                guessedLetterBox.setAttribute("class", "redLetter");
+            };
+
+            document.getElementById("guessedList").appendChild(guessedLetterBox);
             
             //based on whether a correct guess was made, different functions/methods to execute. 
             if (correctLetter) {
